@@ -13,3 +13,15 @@ const port = 5000;
 app.listen(port, function (){
 console.log("Lisenning on port: " + port)
 })
+
+app.get('/consultarAlunos', function (req, response) {
+    response.sendFile(path.join(_dirname, '/public/index.html'))
+  }) 
+
+  app.get('/inserirAlunos', function (req, response) {
+    response.sendFile(path.join(_dirname, '/public/index.html'))
+  }) 
+
+  app.get('/login', function (req, response) {
+    response.sendFile(path.join(_dirname, '/public/index.html'))
+  }) 

@@ -1,27 +1,21 @@
-const express = require('express')
-const path = require('path')
-const app = express()
- 
+const { clear } = require('console');
+const express = require('express');
+const app = express();
+const path = require('path');
+const connection = require('./public/scripts/dbconnection.js');
 app.use(express.static('./public'))
 
- app.get('/', function (req, response) {
-  response.sendFile(path.join(_dirname, '/public/index.html'))
-}) 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ extended: false }));
+
+//rotas para os pedidos
+app.use('/',require('./routes/mainRoute'))
+app.use('/navbar',require('./routes/navbarRoute'))
+app.use('/tipos', require('./routes/tiposRoute'))
+app.use('/utilizador',require('./routes/utilizadorRoute'))
+
+const port = 3000;
  
-const port = 5000;
-
-app.listen(port, function (){
-console.log("Lisenning on port: " + port)
+app.listen(port, () => {
+    console.log(`Listenning on port ${port}`);
 })
-
-app.get('/consultarAlunos', function (req, response) {
-    response.sendFile(path.join(_dirname, '/public/index.html'))
-  }) 
-
-  app.get('/inserirAlunos', function (req, response) {
-    response.sendFile(path.join(_dirname, '/public/index.html'))
-  }) 
-
-  app.get('/login', function (req, response) {
-    response.sendFile(path.join(_dirname, '/public/index.html'))
-  }) 
